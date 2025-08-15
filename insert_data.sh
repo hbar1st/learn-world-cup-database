@@ -12,7 +12,7 @@ fi
 
 TRUNCATE_RESULT=$($PSQL "truncate teams, games")
 
-# parameters are $1 the name of the team
+# parameter: $1 is the name of the team
 # output is the new team id if one is made or the matching team id from the table
 INSERT_TEAM() {
   TEAM_ID=$($PSQL "select team_id from teams where name='$1'")
@@ -29,16 +29,15 @@ INSERT_TEAM() {
 
 cat games.csv | while IFS="," read YEAR ROUND WINNER OPPONENT WINNER_GOALS OPPONENT_GOALS
 do
-  #echo $YEAR $ROUND $WINNER $OPPONENT $WINNER_GOALS $OPPONENT_GOALS
-  # is the team unique?
+  # skip dealing with the title row
   if [[ $OPPONENT != 'opponent' ]]
   then
+    # populate the teams table with unique team names
     OPPONENT_TEAM_ID=$(INSERT_TEAM $OPPONENT)
     WINNER_TEAM_ID=$(INSERT_TEAM $WINNER)
-  
-    echo $OPPONENT_TEAM_ID
-    
-    echo $WINNER_TEAM_ID
+
+    # populate the games table with each game played
+    INSERT_GAME_RESULT=$($PSQL "insert into games(year,round,winner_goals,opponent_goals,winner_id,opponent_id) values($YEAR,'$ROUND',$WINNER_GOALS,$OPPONENT_GOALS,$WINNER_TEAM_ID,$OPPONENT_TEAM_ID)")
   fi
   
 done

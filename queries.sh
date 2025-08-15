@@ -8,34 +8,34 @@ echo -e "\nTotal number of goals in all games from winning teams:"
 echo "$($PSQL "SELECT SUM(winner_goals) FROM games")"
 
 echo -e "\nTotal number of goals in all games from both teams combined:"
-echo
+echo "$($PSQL "select sum(winner_goals)+sum(opponent_goals) from games")"
 
 echo -e "\nAverage number of goals in all games from the winning teams:"
-echo
+echo "$($PSQL "select avg(winner_goals) from games")"
 
 echo -e "\nAverage number of goals in all games from the winning teams rounded to two decimal places:"
-echo
+echo "$($PSQL "select round(avg(winner_goals),2) from games")"
 
 echo -e "\nAverage number of goals in all games from both teams:"
-echo
+echo "$($PSQL "select avg(winner_goals+opponent_goals) from games")"
 
 echo -e "\nMost goals scored in a single game by one team:"
-echo
+echo "$($PSQL "select max(winner_goals) from games")"
 
 echo -e "\nNumber of games where the winning team scored more than two goals:"
-echo
+echo "$($PSQL "select count(name) from games as g inner join teams as t on t.team_id = g.winner_id where winner_goals > 2")"
 
 echo -e "\nWinner of the 2018 tournament team name:"
-echo
+echo "$($PSQL "select name from teams left join games on teams.team_id = games.winner_id where year = 2018 and round='Final'")"
 
 echo -e "\nList of teams who played in the 2014 'Eighth-Final' round:"
-echo
+echo "$($PSQL "select distinct(name) from teams full join games as g1 on teams.team_id = g1.winner_id full join games as g2 on teams.team_id = g2.opponent_id  where (g1.year = 2014 or g2.year = 2014) and (g1.round='Eighth-Final' or g2.round='Eighth-Final')")"
 
 echo -e "\nList of unique winning team names in the whole data set:"
-echo
+echo "$($PSQL "select distinct(name) from games as g inner join teams as t on t.team_id = g.winner_id order by name asc")"
 
 echo -e "\nYear and team name of all the champions:"
-echo
+echo "$($PSQL "select year,name from games as g inner join teams as t on t.team_id = g.winner_id where round='Final'")"
 
 echo -e "\nList of teams that start with 'Co':"
 echo "$($PSQL "select name from teams where name like 'Co%'")"

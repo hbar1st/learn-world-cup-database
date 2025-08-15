@@ -33,8 +33,8 @@ do
   if [[ $OPPONENT != 'opponent' ]]
   then
     # populate the teams table with unique team names
-    OPPONENT_TEAM_ID=$(INSERT_TEAM $OPPONENT)
-    WINNER_TEAM_ID=$(INSERT_TEAM $WINNER)
+    OPPONENT_TEAM_ID=$(INSERT_TEAM "$OPPONENT")
+    WINNER_TEAM_ID=$(INSERT_TEAM "$WINNER")
 
     # populate the games table with each game played
     INSERT_GAME_RESULT=$($PSQL "insert into games(year,round,winner_goals,opponent_goals,winner_id,opponent_id) values($YEAR,'$ROUND',$WINNER_GOALS,$OPPONENT_GOALS,$WINNER_TEAM_ID,$OPPONENT_TEAM_ID)")

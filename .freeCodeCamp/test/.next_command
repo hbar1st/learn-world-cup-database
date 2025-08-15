@@ -66,3 +66,46 @@ __vsc_dbg_trap="$(__vsc_get_trap DEBUG)"
 [[ "$__vsc_dbg_trap" != '__vsc_preexec "$_"' && "$__vsc_dbg_trap" != '__vsc_preexec_all "$_"' ]]
 trap '__vsc_preexec_all "$_"' DEBUG
 __vsc_original_prompt_command=${PROMPT_COMMAND:-}
+ls --color=auto
+more games.csv
+psql --username=freecodecamp --dbname=postgres
+ls --color=auto
+ls --color=auto -la
+chmod +x insert_data.sh
+chmod +x queries.sh
+ls --color=auto
+./insert_data.sh
+./insert_data.sh
+more games.csv
+./insert_data.sh
+chmod -x insert_data.sh
+ls --color=auto -la
+chmod -x queries.sh
+chmod +x insert_data.sh
+chmod +x queries.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+pdump --help
+pqdump --help
+which pdump
+pgdump --help
+pg_dump --help
+pg_dump -U freeCodeCamp -d worldcup -cC --inserts > worldcup.sql
+pg_dump -U freecodecamp -d worldcup -cC --inserts > worldcup.sql
+ls --color=auto
+more worldcup.sql

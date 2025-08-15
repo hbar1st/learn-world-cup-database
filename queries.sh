@@ -38,4 +38,4 @@ echo -e "\nYear and team name of all the champions:"
 echo
 
 echo -e "\nList of teams that start with 'Co':"
-echo
+echo "$($PSQL "select name from teams where name like 'Co%'")"

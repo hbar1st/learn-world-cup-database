@@ -109,3 +109,15 @@ pg_dump -U freeCodeCamp -d worldcup -cC --inserts > worldcup.sql
 pg_dump -U freecodecamp -d worldcup -cC --inserts > worldcup.sql
 ls --color=auto
 more worldcup.sql
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
